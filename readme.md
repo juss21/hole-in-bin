@@ -19,7 +19,7 @@ So our input needs to be longer than 0x40 (64 in decimal) characters.
 
 ## ex01 
 
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/01_done.png" width="400" heigth="400" />  
+<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/01_done.png" width="800" heigth="800" />  
 
 The program compares input/argument to 0x61626364 (`abcd` based on ascii table from hex value).     
 It expects the input string to be in little-endian format, meaning that the least significant byte is stored first in memory.   
@@ -29,7 +29,7 @@ As the least significant byte is stored first, we need to write out `abcd` in re
 
 ## ex02
 
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/02_done.png" width="400" heigth="400" />     
+<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/02_done.png" width="800" heigth="800" />     
 
 This was pretty much copy-paste from the previous exercise.     
 Only in this one you had to give a correct value to a variable before running the application.  
