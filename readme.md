@@ -14,7 +14,8 @@ disas main
 As we can see the application uses `gets()` function. It can be exploited, because `gets()` doesn't check for buffer overflows.   
 
 We can calculate the buffer size by subtracting (%eax) buffer offset address from end address of the buffer `0x5c - 0x1c = 0x40`    
-So our input needs to be longer than 0x40 (64 in decimal) characters.  
+So our input needs to be longer than 0x40 (64 in decimal) characters.         
+
 ![pic1](https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/00_done.png)  
 
 ## ex01 
