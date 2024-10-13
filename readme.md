@@ -1,4 +1,4 @@
-# Hole-in-bin
+# Protostar Exploit
 
 This exercise is designed to test your skills and understanding of binary exploitation and reverse engineering. You will need to work through a series of binary exploitation challenges using a provided virtual machine.
 
